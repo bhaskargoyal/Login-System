@@ -1,0 +1,24 @@
+extends layout
+
+block contents
+	#container.bg-danger
+		#wrapper.container-fluid
+			.row
+				.col-xs-12.col-sm-6.col-sm-offset-3.bg-info
+					br
+					h1.text-center Home Page
+					br
+			.row
+				.col-xs-12.col-sm-6.col-sm-offset-3.bg-success
+					br
+					br
+					.row
+						.col-sm-6.col-sm-offset-3
+							h3 #{id}
+							a(href="logout") LOGOUT
+							
+
+
+block scripts
+	script(src="/vendor/bootstrap.js", type="text/js")
+	script(src="/vendor/jquery.js", type="text/js")
