@@ -5,7 +5,7 @@ block contents
 		#wrapper.container-fluid
 			.row
 				.col-xs-12.col-sm-6.col-sm-offset-3.bg-info
-					br 
+					br
 					h1.text-center Login Page
 					br
 			.row
@@ -14,10 +14,10 @@ block contents
 					br
 					.row
 						.col-sm-6.col-sm-offset-3
-							form(action="/", method="post", role="form")		
+							form(action="/", method="post", role="form")
 								.form-group
 									label(for="email") Username:
-									input#email.form-control(type="email", hint="username", required)		
+									input#email.form-control(type="email", hint="username", required)
 								.form-group
 									label(for="pwd") Password:
 									input.form-control(type="password", hint="password", required)
@@ -28,3 +28,5 @@ block contents
 
 
 block scripts
+	script(src="/vendor/bootstrap.js", type="text/js")
+	script(src="/vendor/jquery.js", type="text/js")
