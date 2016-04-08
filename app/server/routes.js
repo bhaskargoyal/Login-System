@@ -1,8 +1,9 @@
 module.exports = function(app) {
 	app.get('/', function (req, res) {
 		var wrong = "";
-		req.session.login = "0";
-		if(req.session.wrong){
+		req.session.login = 0;
+		console.log("At / : " + req.session.login);	
+		if(req.session.wrong != null){
 			wrong = req.session.wrong;
 		}
 		res.render('index', {title: 'Main Page', wrong: wrong});
@@ -24,6 +25,8 @@ module.exports = function(app) {
 					if(rows[0].id === id) {
 						req.session.username = id;
 						req.session.login = 1;
+						console.log("At / post " + req.session.login);
+						req.session.wrong = null;
 						res.redirect('/home');
 					} else {
 						req.session.wrong = "NO matching";
@@ -39,6 +42,7 @@ module.exports = function(app) {
 			res.redirect('/');
 		} else {
 			var id;
+			console.log("At home " + req.session.login);
 			if(req.session.login == 1){
 				res.render('home', {title: "Home", id: req.session.username});
 			} else {
@@ -48,9 +52,22 @@ module.exports = function(app) {
 		}
 	});
 	app.get('/logout', function(req, res) {
-		if(req.session.login == 1){
-			req.session.login =0;
+		console.log("At logout : "+ req.session.login);
+		if(req.session.login == null){
+			req.session.login = 0;
+		} else {
+			if(req.session.login == 1){
+				req.session.login = 0;
+			} else {
+
+			}
 		}
-		res.redirect('/');
+		
+		// res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+		// res.header('Expires', '-1');
+		// res.header('Pragma', 'no-cache');
+		// res.setHeader("location", "/");
+		// res.end();
+		res.redirect(302, '/');
 	});
 }
