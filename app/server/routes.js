@@ -1,9 +1,9 @@
 module.exports = function(app) {
 	app.get('/', function (req, res) {
+		// if home page then check if logged in then redirect to home page if not then render index page
 		var wrong = "";
 		if(req.session.login == 1) {
 			res.redirect('/home');
-			res.end();
 		}
 		req.session.login = 0;
 		if(req.session.wrong != null){
@@ -13,6 +13,7 @@ module.exports = function(app) {
 		res.render('index', {title: 'Main Page', wrong: wrong});
 	});
 	app.post('/', function(req, res) {
+		// came after when username and password is send as post data.
 		var dbconnect = require('./db/connect.js');
 		var id = req.body['id'];
 		var pass = req.body['pass'];
